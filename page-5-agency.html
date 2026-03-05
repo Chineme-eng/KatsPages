@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flux Studio — Creative Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#fafaf8;--dark:#0d0d0a;--red:#cc2200;--orange:#e84a1a;--text:#1a1a16;--muted:#7a7a70;--border:#e0e0d8}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:crosshair}
+
+    nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;z-index:100;mix-blend-mode:multiply}
+    .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--dark);text-decoration:none;letter-spacing:0.05em}
+    .nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+    .nav-links a{font-size:0.82rem;letter-spacing:0.05em;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--dark)}
+    .nav-contact{font-size:0.82rem;letter-spacing:0.05em;color:var(--dark);text-decoration:none;border-bottom:1px solid var(--dark);padding-bottom:1px;transition:color 0.2s}
+    .nav-contact:hover{color:var(--red)}
+
+    /* HERO — OVERSIZED TYPE */
+    .hero{min-height:100vh;padding:7rem 4rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem}
+    .hero-tag{font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
+    .hero-year{font-size:0.78rem;letter-spacing:0.1em;color:var(--muted)}
+    .hero-headline{position:relative}
+    .hero-headline h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(6rem,18vw,20rem);line-height:0.85;color:var(--dark);letter-spacing:-0.01em;opacity:0;animation:fadeIn 1s 0.2s forwards}
+    .hero-headline h1 em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--red)}
+    .hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:2rem;border-top:1px solid var(--border)}
+    .hero-desc{font-size:1rem;color:var(--muted);max-width:340px;line-height:1.7;opacity:0;animation:fadeUp 0.8s 0.6s forwards}
+    .hero-cta{opacity:0;animation:fadeUp 0.8s 0.7s forwards}
+    .btn-big{display:inline-flex;align-items:center;gap:0.8rem;background:var(--dark);color:var(--bg);padding:1.1rem 2.5rem;font-size:0.9rem;letter-spacing:0.05em;text-decoration:none;transition:background 0.2s,transform 0.2s}
+    .btn-big:hover{background:var(--red);transform:translateY(-2px)}
+    .hero-scroll{writing-mode:vertical-rl;text-orientation:mixed;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeIn 1s 1s forwards}
+
+    /* RED MARQUEE */
+    .marquee-wrap{background:var(--red);overflow:hidden;padding:1rem 0}
+    .marquee{display:flex;gap:3rem;animation:scroll 20s linear infinite;white-space:nowrap}
+    .marquee span{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:white;letter-spacing:0.08em}
+    .marquee span.dot{color:rgba(255,255,255,0.5)}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* WORK GRID */
+    .work{padding:6rem 4rem}
+    .work-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem}
+    .work-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);color:var(--dark)}
+    .work-count{font-size:0.78rem;letter-spacing:0.1em;color:var(--muted)}
+    .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .work-item{position:relative;overflow:hidden;cursor:pointer}
+    .work-thumb{width:100%;aspect-ratio:16/10;transition:transform 0.5s}
+    .work-item:hover .work-thumb{transform:scale(1.03)}
+    .w1{background:linear-gradient(135deg,#0d0d0a,#cc2200,#e84a1a)}
+    .w2{background:linear-gradient(135deg,#1a1a16,#3d3d30,#7a7a70)}
+    .w3{background:linear-gradient(135deg,#0a0a18,#1a1a4a,#3a3a8a)}
+    .w4{background:linear-gradient(135deg,#1a0a0a,#4a1a0a,#8a3a0a)}
+    .work-info{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,rgba(0,0,0,0.8));transform:translateY(20px);opacity:0;transition:all 0.3s}
+    .work-item:hover .work-info{transform:none;opacity:1}
+    .work-cat{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.3rem}
+    .work-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:white;letter-spacing:0.05em}
+
+    /* SERVICES */
+    .services{padding:6rem 4rem;background:var(--dark);color:var(--bg)}
+    .services-header{margin-bottom:4rem}
+    .services-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,7rem);line-height:0.9;color:white}
+    .services-title em{font-family:'DM Serif Display',serif;font-style:italic;color:var(--orange)}
+    .services-list{display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .service-item{padding:2.5rem 0;border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:padding-left 0.3s}
+    .service-item:hover{padding-left:1rem}
+    .service-num{font-family:'DM Sans',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.3);margin-right:1.5rem}
+    .service-name{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:0.03em;color:white;flex:1;transition:color 0.2s}
+    .service-item:hover .service-name{color:var(--orange)}
+    .service-arrow{color:rgba(255,255,255,0.3);transition:color 0.2s,transform 0.2s}
+    .service-item:hover .service-arrow{color:var(--orange);transform:translateX(6px)}
+
+    footer{padding:2.5rem 4rem;background:var(--dark);border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:rgba(255,255,255,0.4);letter-spacing:0.05em}
+    .footer-links{display:flex;gap:2rem}
+    .footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s}
+    .footer-links a:hover{color:white}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s}
+    .reveal.visible{opacity:1;transform:none}
+    @media(max-width:768px){nav{padding:1rem 1.5rem}.hero{padding:6rem 1.5rem 2rem}.hero-headline h1{font-size:clamp(5rem,20vw,10rem)}.work,.services{padding:4rem 1.5rem}.work-grid{grid-template-columns:1fr}.services-list{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">FLUX</a>
+  <ul class="nav-links"><li><a href="#">Work</a></li><li><a href="#">Services</a></li><li><a href="#">About</a></li></ul>
+  <a href="#" class="nav-contact">Let's talk →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-top">
+    <span class="hero-tag">Creative Studio — Est. 2020</span>
+    <span class="hero-year">© 2026</span>
+  </div>
+  <div class="hero-headline">
+    <h1>WE<br>MAKE<br><em>IDEAS</em><br>LOUD.</h1>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-desc">Flux is a brand and digital studio. We build identities, campaigns, and products that people can't ignore.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-big">See our work <span>→</span></a>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>BRANDING</span><span class="dot">✦</span><span>WEB DESIGN</span><span class="dot">✦</span><span>CAMPAIGNS</span><span class="dot">✦</span><span>STRATEGY</span><span class="dot">✦</span><span>MOTION</span><span class="dot">✦</span><span>IDENTITY</span><span class="dot">✦</span>
+    <span>BRANDING</span><span class="dot">✦</span><span>WEB DESIGN</span><span class="dot">✦</span><span>CAMPAIGNS</span><span class="dot">✦</span><span>STRATEGY</span><span class="dot">✦</span><span>MOTION</span><span class="dot">✦</span><span>IDENTITY</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<section class="work">
+  <div class="work-header reveal">
+    <h2 class="work-title">SELECTED WORK</h2>
+    <span class="work-count">04 projects</span>
+  </div>
+  <div class="work-grid">
+    <div class="work-item reveal"><div class="work-thumb w1"></div><div class="work-info"><div class="work-cat">Branding · 2026</div><div class="work-name">NOVA LABS</div></div></div>
+    <div class="work-item reveal"><div class="work-thumb w2"></div><div class="work-info"><div class="work-cat">Web · Campaign</div><div class="work-name">THE DRIFT CO.</div></div></div>
+    <div class="work-item reveal"><div class="work-thumb w3"></div><div class="work-info"><div class="work-cat">Identity · App</div><div class="work-name">COLDFRAME</div></div></div>
+    <div class="work-item reveal"><div class="work-thumb w4"></div><div class="work-info"><div class="work-cat">Packaging · Brand</div><div class="work-name">AMBER GOODS</div></div></div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-header reveal">
+    <h2 class="services-title">WHAT<br>WE <em>DO</em></h2>
+  </div>
+  <div class="services-list">
+    <div class="service-item reveal"><span class="service-num">01</span><span class="service-name">Brand Strategy</span><span class="service-arrow">→</span></div>
+    <div class="service-item reveal"><span class="service-num">02</span><span class="service-name">Visual Identity</span><span class="service-arrow">→</span></div>
+    <div class="service-item reveal"><span class="service-num">03</span><span class="service-name">Web Design</span><span class="service-arrow">→</span></div>
+    <div class="service-item reveal"><span class="service-num">04</span><span class="service-name">Campaigns</span><span class="service-arrow">→</span></div>
+    <div class="service-item reveal"><span class="service-num">05</span><span class="service-name">Motion & Video</span><span class="service-arrow">→</span></div>
+    <div class="service-item reveal"><span class="service-num">06</span><span class="service-name">Art Direction</span><span class="service-arrow">→</span></div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">FLUX STUDIO</span>
+  <div class="footer-links"><a href="#">Instagram</a><a href="#">Dribbble</a><a href="#">LinkedIn</a><a href="#">Contact</a></div>
+</footer>
+
+<script>
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}}),{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
