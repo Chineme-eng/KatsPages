@@ -21,8 +21,20 @@
 
     /* HERO */
     .hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;padding-bottom:5rem;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#1c0a04 0%,#3a1808 30%,#8b4513 60%,#c4622d 80%,#d4a030 100%);z-index:0}
-    .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(28,16,8,0.9) 0%,rgba(28,16,8,0.4) 50%,transparent 100%)}
+   .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1600');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,16,8,0.95) 0%, rgba(28,16,8,0.4) 100%);
+    }
     /* Floating food decorations */
     .hero-deco{position:absolute;font-size:4rem;opacity:0.08;pointer-events:none;z-index:1}
     .d1{top:15%;left:10%;transform:rotate(-15deg)}
@@ -58,9 +70,26 @@
     .menu-card{background:var(--cream);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
     .menu-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(28,16,8,0.1)}
     .menu-thumb{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative}
-    .mt1{background:linear-gradient(135deg,#1c0a04,#8b4513,#c4622d)}
-    .mt2{background:linear-gradient(135deg,#0a1808,#2d5a1a,#5a9a30)}
-    .mt3{background:linear-gradient(135deg,#1a1008,#5a3808,#b87820)}
+    /* 1. Tonkotsu Ramen */
+    .mt1 { 
+      background-image: url('https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=800'); 
+      background-size: cover; 
+      background-position: center; 
+    }
+
+    /* 2. Yuzu Hamachi (Yellowtail) */
+    .mt2 { 
+      background-image: url('https://images.unsplash.com/photo-1534422298391-e4f8c170db76?auto=format&fit=crop&q=80&w=800'); 
+      background-size: cover; 
+      background-position: center; 
+    }
+
+    /* 3. Seasonal Omakase (Chef's Sushi) */
+    .mt3 { 
+      background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=800'); 
+      background-size: cover; 
+      background-position: center; 
+    }
     .menu-body{padding:1.5rem}
     .menu-category{font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem}
     .menu-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--dark);margin-bottom:0.4rem}
@@ -135,9 +164,9 @@
     <h2 class="sec-title">Current <em>favourites</em></h2>
   </div>
   <div class="menu-grid">
-    <div class="menu-card reveal"><div class="menu-thumb mt1"><span style="font-size:3.5rem">🍜</span></div><div class="menu-body"><div class="menu-category">House special</div><div class="menu-name">Tonkotsu Ramen</div><div class="menu-desc">18-hour pork bone broth, chashu pork, soft egg, nori. Our most beloved bowl.</div><div class="menu-price">$24</div></div></div>
-    <div class="menu-card reveal"><div class="menu-thumb mt2"><span style="font-size:3.5rem">🥗</span></div><div class="menu-body"><div class="menu-category">Small plates</div><div class="menu-name">Yuzu Hamachi</div><div class="menu-desc">Wild hamachi, yuzu kosho, cucumber, sesame oil. Bright and clean.</div><div class="menu-price">$18</div></div></div>
-    <div class="menu-card reveal"><div class="menu-thumb mt3"><span style="font-size:3.5rem">🍱</span></div><div class="menu-body"><div class="menu-category">Chef's choice</div><div class="menu-name">Seasonal Omakase</div><div class="menu-desc">8-course tasting menu built around what's best today. Changes weekly.</div><div class="menu-price">$95</div></div></div>
+   <div class="menu-thumb mt1"></div><div class="menu-body"><div class="menu-category">House special</div><div class="menu-name">Tonkotsu Ramen</div><div class="menu-desc">18-hour pork bone broth, chashu pork, soft egg, nori. Our most beloved bowl.</div><div class="menu-price">$24</div></div></div>
+   <div class="menu-thumb mt2"></div><div class="menu-body"><div class="menu-category">Small plates</div><div class="menu-name">Yuzu Hamachi</div><div class="menu-desc">Wild hamachi, yuzu kosho, cucumber, sesame oil. Bright and clean.</div><div class="menu-price">$18</div></div></div>
+    <div class="menu-thumb mt3"></div><div class="menu-body"><div class="menu-category">Chef's choice</div><div class="menu-name">Seasonal Omakase</div><div class="menu-desc">8-course tasting menu built around what's best today. Changes weekly.</div><div class="menu-price">$95</div></div></div>
   </div>
 </section>
 
