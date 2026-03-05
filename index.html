@@ -633,24 +633,59 @@
 <script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-  const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+  
+  const obs = new IntersectionObserver((entries) => { 
+    entries.forEach(e => { 
+      if (e.isIntersecting) { 
+        e.target.classList.add('visible'); 
+        obs.unobserve(e.target); 
+      } 
+    }); 
+  }, { threshold: 0.06 });
+  
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  function toggleFaq(btn) { const item = btn.closest('.faq-item'); const wasOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!wasOpen) item.classList.add('open'); }
-  function handleBook() { const n=document.getElementById('b-name').value.trim(),e=document.getElementById('b-email').value.trim(),p=document.getElementById('b-project').value.trim(); if(!n||!e||!p){alert('Please fill in your name, email, and project description.');return;} const m=document.getElementById('bookSuccess'); m.style.display='block'; setTimeout(()=>m.style.display='none',6000); }
-  function handleContact() { const n=document.getElementById('c-name').value.trim(),e=document.getElementById('c-email').value.trim(),msg=document.getElementById('c-msg').value.trim(); if(!n||!e||!msg){alert('Please fill in all fields.');return;} const m=document.getElementById('contactSuccess'); m.style.display='block'; setTimeout(()=>m.style.display='none',6000); }<
-function scaleIframes() {
-  document.querySelectorAll('.iframe-wrap').forEach(wrap => {
-    const iframe = wrap.querySelector('iframe');
-    if (!iframe) return;
-    const scale = wrap.offsetWidth / 1440;
-    iframe.style.transform = `scale(${scale})`;
-    iframe.style.width  = wrap.offsetWidth / scale + 'px';
-    iframe.style.height = wrap.offsetHeight / scale + 'px';
-  });
-}
-window.addEventListener('load', scaleIframes);
-window.addEventListener('resize', scaleIframes);
-setTimeout(scaleIframes, 300);
-  </script>
+
+  function toggleFaq(btn) { 
+    const item = btn.closest('.faq-item'); 
+    const wasOpen = item.classList.contains('open'); 
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); 
+    if (!wasOpen) item.classList.add('open'); 
+  }
+
+  function handleBook() { 
+    const n=document.getElementById('b-name').value.trim(),
+          e=document.getElementById('b-email').value.trim(),
+          p=document.getElementById('b-project').value.trim(); 
+    if(!n||!e||!p){alert('Please fill in your name, email, and project description.');return;} 
+    const m=document.getElementById('bookSuccess'); 
+    m.style.display='block'; 
+    setTimeout(()=>m.style.display='none',6000); 
+  }
+
+  function handleContact() { 
+    const n=document.getElementById('c-name').value.trim(),
+          e=document.getElementById('c-email').value.trim(),
+          msg=document.getElementById('c-msg').value.trim(); 
+    if(!n||!e||!msg){alert('Please fill in all fields.');return;} 
+    const m=document.getElementById('contactSuccess'); 
+    m.style.display='block'; 
+    setTimeout(()=>m.style.display='none',6000); 
+  }
+
+  function scaleIframes() {
+    document.querySelectorAll('.iframe-wrap').forEach(wrap => {
+      const iframe = wrap.querySelector('iframe');
+      if (!iframe) return;
+      const scale = wrap.offsetWidth / 1440;
+      iframe.style.width  = '1440px';
+      iframe.style.height = (wrap.offsetHeight / scale) + 'px';
+      iframe.style.transform = `scale(${scale})`;
+    });
+  }
+
+  window.addEventListener('load', scaleIframes);
+  window.addEventListener('resize', scaleIframes);
+  setTimeout(scaleIframes, 500);
+</script>
 </body>
 </html>
