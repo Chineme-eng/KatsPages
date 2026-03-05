@@ -540,20 +540,54 @@
     </div>
     <div class="reveal reveal-d2">
       <div class="book-form">
-        <div class="form-title">Let's chat 👋</div>
-        <p class="form-subtitle">Tell me what you're building and I'll help you figure out the best way to launch it.</p>
-        <div class="form-grid">
-          <div class="form-group"><label class="form-label" for="b-name">Your name</label><input id="b-name" class="form-input" type="text" placeholder="Alex Smith" /></div>
-          <div class="form-group"><label class="form-label" for="b-email">Email address</label><input id="b-email" class="form-input" type="email" placeholder="alex@company.com" /></div>
-          <div class="form-group full"><label class="form-label" for="b-project">What are you building?</label><input id="b-project" class="form-input" type="text" placeholder="e.g. landing page for my app, portfolio site, product launch..." /></div>
-          <div class="form-group"><label class="form-label" for="b-plan">Interested in</label><select id="b-plan" class="form-select"><option value="">Choose a plan...</option><option>Starter (Free)</option><option>Builder ($249)</option><option>Pro Launch ($549)</option><option>Not sure yet</option></select></div>
-          <div class="form-group"><label class="form-label" for="b-timeline">Ideal timeline</label><select id="b-timeline" class="form-select"><option value="">When do you need it?</option><option>ASAP (within a week)</option><option>2–3 weeks</option><option>1 month+</option><option>Just exploring</option></select></div>
-          <div class="form-group full"><label class="form-label" for="b-details">Anything else I should know?</label><textarea id="b-details" class="form-textarea" placeholder="Share links, inspiration, or describe what you're imagining..."></textarea></div>
-        </div>
-        <div class="form-submit-wrap">
-          <button class="btn-primary" onclick="handleBook()">Send my request <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
-          <span class="form-note">I reply within 24 hours 🙂</span>
-        </div>
+  <div class="form-title">Let's chat 👋</div>
+  <p class="form-subtitle">Tell me what you're building and I'll help you figure out the best way to launch it.</p>
+  
+  <form action="https://formspree.io/f/xjgabvjg" method="POST">
+    <div class="form-grid">
+      <div class="form-group">
+        <label class="form-label" for="b-name">Your name</label>
+        <input name="Name" id="b-name" class="form-input" type="text" placeholder="Alex Smith" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="b-email">Email address</label>
+        <input name="Email" id="b-email" class="form-input" type="email" placeholder="alex@company.com" required />
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="b-project">What are you building?</label>
+        <input name="Project Type" id="b-project" class="form-input" type="text" placeholder="e.g. landing page for my app..." required />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="b-plan">Interested in</label>
+        <select name="Plan" id="b-plan" class="form-select">
+          <option value="">Choose a plan...</option>
+          <option>Starter (Free)</option>
+          <option>Builder ($249)</option>
+          <option>Pro Launch ($549)</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="b-timeline">Ideal timeline</label>
+        <select name="Timeline" id="b-timeline" class="form-select">
+          <option value="">When do you need it?</option>
+          <option>ASAP (within a week)</option>
+          <option>2–3 weeks</option>
+          <option>1 month+</option>
+          <option>Just exploring</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="b-details">Anything else I should know?</label>
+        <textarea name="Details" id="b-details" class="form-textarea" placeholder="Share links, inspiration..."></textarea>
+      </div>
+    </div>
+    <div class="form-submit-wrap">
+      <button type="submit" class="btn-primary">Send my request <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+      <span class="form-note">I reply within 24 hours 🙂</span>
+    </div>
+  </form>
+</div>
         <div class="form-success-msg" id="bookSuccess">✓ Got it! I'll be in touch within 24 hours. Talk soon!</div>
       </div>
     </div>
@@ -627,17 +661,28 @@
       <a href="https://linkedin.com/in/katoduah" target="_blank" class="contact-card"><div class="contact-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div><div><div class="contact-info-label">LinkedIn</div><div class="contact-info-value">linkedin.com/in/katoduah</div></div></a>
     </div>
     <div class="reveal reveal-d2">
-      <div class="contact-form-wrap">
-        <div class="form-title">Drop me a message</div>
-        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.5">Quick question, idea, or just want to say hi? Go for it.</p>
-        <div class="form-grid" style="margin-bottom:1rem">
-          <div class="form-group"><label class="form-label" for="c-name">Name</label><input id="c-name" class="form-input" type="text" placeholder="Your name" /></div>
-          <div class="form-group"><label class="form-label" for="c-email">Email</label><input id="c-email" class="form-input" type="email" placeholder="you@email.com" /></div>
-          <div class="form-group full"><label class="form-label" for="c-msg">Message</label><textarea id="c-msg" class="form-textarea" placeholder="What's on your mind?"></textarea></div>
-        </div>
-        <button class="btn-primary" onclick="handleContact()">Send it <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
-        <div class="form-success-msg" id="contactSuccess">✓ Message sent! Talk soon 👋</div>
+     <div class="contact-form-wrap">
+  <div class="form-title">Drop me a message</div>
+  <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.5">Quick question, idea, or just want to say hi? Go for it.</p>
+  
+  <form action="https://formspree.io/f/xjgabvjg" method="POST">
+    <div class="form-grid" style="margin-bottom:1rem">
+      <div class="form-group">
+        <label class="form-label" for="c-name">Name</label>
+        <input name="Name" id="c-name" class="form-input" type="text" placeholder="Your name" required />
       </div>
+      <div class="form-group">
+        <label class="form-label" for="c-email">Email</label>
+        <input name="Email" id="c-email" class="form-input" type="email" placeholder="you@email.com" required />
+      </div>
+      <div class="form-group full">
+        <label class="form-label" for="c-msg">Message</label>
+        <textarea name="Message" id="c-msg" class="form-textarea" placeholder="What's on your mind?" required></textarea>
+      </div>
+    </div>
+    <button type="submit" class="btn-primary">Send it <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+  </form>
+</div>
     </div>
   </div>
 </section>
