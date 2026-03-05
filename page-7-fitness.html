@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form — Fitness & Wellness Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,700;0,900;1,300&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#f8f8f6;--dark:#0c0c0a;--black:#000;--accent:#d4f060;--accent2:#b8d840;--text:#1a1a16;--muted:#7a7a70;--border:#e0e0d8;--surface:#f0f0ec}
+    body{background:var(--bg);color:var(--text);font-family:'Archivo',sans-serif;font-weight:300;overflow-x:hidden}
+
+    nav{position:fixed;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;z-index:100;background:rgba(248,248,246,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-size:1.3rem;font-weight:900;color:var(--dark);text-decoration:none;letter-spacing:-0.02em}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-size:0.87rem;color:var(--muted);text-decoration:none;font-weight:400;transition:color 0.2s}
+    .nav-links a:hover{color:var(--dark)}
+    .nav-btn{background:var(--accent);color:var(--dark);padding:0.55rem 1.3rem;border-radius:4px;font-size:0.87rem;font-weight:700;text-decoration:none;transition:background 0.2s,transform 0.2s}
+    .nav-btn:hover{background:var(--accent2);transform:translateY(-1px)}
+
+    /* HERO */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 4rem;background:var(--dark);color:white;position:relative;overflow:hidden}
+    .hero-left::before{content:'';position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(212,240,96,0.08) 0%,transparent 60%)}
+    .hero-eyebrow{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;opacity:0;animation:fadeUp 0.7s 0.1s forwards}
+    .hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent)}
+    .hero-title{font-size:clamp(3rem,6vw,6rem);font-weight:900;line-height:0.95;letter-spacing:-0.03em;color:white;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s 0.25s forwards}
+    .hero-title em{font-style:italic;font-weight:300;color:rgba(255,255,255,0.5)}
+    .hero-sub{font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.75;max-width:380px;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.8s 0.4s forwards}
+    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem;opacity:0;animation:fadeUp 0.8s 0.55s forwards}
+    .btn-lime{background:var(--accent);color:var(--dark);padding:0.9rem 2.5rem;font-size:0.9rem;font-weight:700;text-decoration:none;border-radius:4px;transition:background 0.2s,transform 0.2s;display:inline-block}
+    .btn-lime:hover{background:var(--accent2);transform:translateY(-2px)}
+    .btn-wire{background:transparent;color:white;padding:0.9rem 2.5rem;font-size:0.9rem;font-weight:400;text-decoration:none;border:1px solid rgba(255,255,255,0.2);border-radius:4px;transition:border-color 0.2s;display:inline-block}
+    .btn-wire:hover{border-color:rgba(255,255,255,0.5)}
+    .hero-proof{display:flex;gap:2.5rem;font-size:0.8rem;color:rgba(255,255,255,0.4);opacity:0;animation:fadeUp 0.8s 0.7s forwards}
+    .hero-proof span{display:flex;align-items:center;gap:0.4rem}
+    .proof-dot{width:6px;height:6px;background:var(--accent);border-radius:50%}
+
+    .hero-right{background:var(--surface);display:flex;flex-direction:column;justify-content:center;padding:8rem 4rem 4rem;gap:2rem;position:relative}
+    .program-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:1.8rem;transition:transform 0.3s,border-color 0.3s;opacity:0;animation:slideIn 0.8s forwards}
+    .program-card:nth-child(1){animation-delay:0.4s}
+    .program-card:nth-child(2){animation-delay:0.55s}
+    .program-card:nth-child(3){animation-delay:0.7s}
+    .program-card:hover{transform:translateX(-4px);border-color:var(--accent)}
+    .pc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.8rem}
+    .pc-icon{width:40px;height:40px;background:var(--dark);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .pc-tag{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(212,240,96,0.2);color:#5a7800;padding:0.2rem 0.6rem;border-radius:50px;font-weight:700}
+    .pc-name{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:0.3rem}
+    .pc-desc{font-size:0.83rem;color:var(--muted);line-height:1.55}
+    .pc-meta{margin-top:0.8rem;display:flex;gap:1rem;font-size:0.75rem;color:var(--muted)}
+
+    /* FEATURES */
+    .features{padding:6rem 4rem;background:var(--bg)}
+    .feat-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem}
+    .sec-eyebrow{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem}
+    .sec-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--dark);letter-spacing:-0.02em;line-height:1.05}
+    .sec-title em{font-style:italic;font-weight:300;color:var(--muted)}
+    .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border)}
+    .feat-item{background:var(--bg);padding:2.5rem 2rem;transition:background 0.3s}
+    .feat-item:hover{background:var(--dark);color:white}
+    .feat-item:hover .fi-title{color:white}
+    .feat-item:hover .fi-desc{color:rgba(255,255,255,0.5)}
+    .feat-item:hover .fi-num{color:var(--accent)}
+    .fi-num{font-size:3rem;font-weight:900;color:var(--border);line-height:1;margin-bottom:1.2rem;transition:color 0.3s}
+    .fi-title{font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:0.4rem;transition:color 0.3s}
+    .fi-desc{font-size:0.85rem;color:var(--muted);line-height:1.6;transition:color 0.3s}
+
+    /* CTA */
+    .cta-section{padding:6rem 4rem;background:var(--accent);display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem}
+    .cta-title{font-size:clamp(2rem,4vw,4rem);font-weight:900;color:var(--dark);letter-spacing:-0.02em;line-height:1.05}
+    .cta-title em{font-style:italic;font-weight:300}
+    .cta-right{}
+    .cta-sub{font-size:0.95rem;color:rgba(12,12,10,0.6);line-height:1.7;margin-bottom:1.5rem;max-width:300px}
+    .btn-dark{background:var(--dark);color:var(--accent);padding:0.9rem 2.5rem;font-size:0.9rem;font-weight:700;text-decoration:none;border-radius:4px;transition:background 0.2s,transform 0.2s;display:inline-block}
+    .btn-dark:hover{background:#333;transform:translateY(-2px)}
+
+    footer{padding:2.5rem 4rem;background:var(--dark);display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-size:1rem;font-weight:900;color:rgba(255,255,255,0.4);letter-spacing:-0.02em}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s}
+    .footer-links a:hover{color:white}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+    @keyframes slideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s,transform 0.6s}
+    .reveal.visible{opacity:1;transform:none}
+    @media(max-width:768px){nav{padding:1rem 1.5rem}.hero{grid-template-columns:1fr}.hero-right{padding:3rem 1.5rem}.hero-left{padding:7rem 1.5rem 3rem}.features,.cta-section{padding:4rem 1.5rem;grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">FORM</a>
+  <ul class="nav-links"><li><a href="#">Programs</a></li><li><a href="#">Coaches</a></li><li><a href="#">Community</a></li></ul>
+  <a href="#" class="nav-btn">Start free trial</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Science-backed fitness</div>
+    <h1 class="hero-title">BUILD<br>YOUR<br><em>BEST</em><br>SELF.</h1>
+    <p class="hero-sub">Form combines expert-designed training programs with real coaching and a community that actually shows up for you.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-lime">Start for free →</a>
+      <a href="#" class="btn-wire">See programs</a>
+    </div>
+    <div class="hero-proof">
+      <span><span class="proof-dot"></span>50,000+ members</span>
+      <span><span class="proof-dot"></span>No equipment needed</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="program-card">
+      <div class="pc-header"><div class="pc-icon">💪</div><span class="pc-tag">Popular</span></div>
+      <div class="pc-name">Strength Foundation</div>
+      <div class="pc-desc">12-week progressive overload program. Build real strength from the ground up.</div>
+      <div class="pc-meta"><span>📅 12 weeks</span><span>⏱ 45 min/day</span><span>⭐ 4.9</span></div>
+    </div>
+    <div class="program-card">
+      <div class="pc-header"><div class="pc-icon">🏃</div><span class="pc-tag">New</span></div>
+      <div class="pc-name">Cardio Reset</div>
+      <div class="pc-desc">6-week cardio program that actually keeps you interested. Zero dreadmill vibes.</div>
+      <div class="pc-meta"><span>📅 6 weeks</span><span>⏱ 30 min/day</span><span>⭐ 4.8</span></div>
+    </div>
+    <div class="program-card">
+      <div class="pc-header"><div class="pc-icon">🧘</div></div>
+      <div class="pc-name">Mobility & Recovery</div>
+      <div class="pc-desc">Daily 15-minute sessions. Your joints will thank you. Your future self will too.</div>
+      <div class="pc-meta"><span>📅 Ongoing</span><span>⏱ 15 min/day</span><span>⭐ 5.0</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feat-header reveal">
+    <div>
+      <div class="sec-eyebrow">Why Form works</div>
+      <h2 class="sec-title">Training that<br><em>sticks.</em></h2>
+    </div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-item reveal"><div class="fi-num">01</div><div class="fi-title">Expert programs</div><div class="fi-desc">Every program is designed by certified coaches with real competition experience.</div></div>
+    <div class="feat-item reveal"><div class="fi-num">02</div><div class="fi-title">Track everything</div><div class="fi-desc">Log workouts, track PRs, measure progress. See exactly how far you've come.</div></div>
+    <div class="feat-item reveal"><div class="fi-num">03</div><div class="fi-title">Real community</div><div class="fi-desc">50k+ members who share your goals. Weekly challenges that keep things fun.</div></div>
+    <div class="feat-item reveal"><div class="fi-num">04</div><div class="fi-title">Works anywhere</div><div class="fi-desc">Home, gym, hotel room. Every program has no-equipment and gym variations.</div></div>
+  </div>
+</section>
+
+<section class="cta-section reveal">
+  <div>
+    <h2 class="cta-title">Ready to stop<br>starting over?</h2>
+  </div>
+  <div class="cta-right">
+    <p class="cta-sub">Try Form free for 14 days. No credit card required. Cancel whenever.</p>
+    <a href="#" class="btn-dark">Start your free trial →</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">FORM</span>
+  <div class="footer-links"><a href="#">Programs</a><a href="#">Pricing</a><a href="#">Blog</a><a href="#">Contact</a></div>
+</footer>
+
+<script>
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}}),{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
