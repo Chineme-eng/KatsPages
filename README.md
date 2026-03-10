@@ -34,7 +34,7 @@ This repository contains **all source code, assets, and configuration files** re
 
 ---
 
-## 💻 Screenshots
+## 💻 Previews
 
 **Home / Portfolio Showcase**
 ![Home Screenshot](assets/images/screenshot-home.png)
